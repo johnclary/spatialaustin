@@ -1,0 +1,51 @@
+body {
+    font-size: 14px;
+    font-family: 'Raleway', sans-serif;
+}
+
+input,label {
+    cursor: pointer;
+    white-space : nowrap;
+}
+
+path {
+    stroke: none;
+}
+
+#tooltip {
+    fill: white;
+    pointer-events: none
+}
+
+.axis-left, .axis-bottom {
+    font-size: 11px;
+    font-family: 'Raleway', sans-serif;
+    font-weight: bold;
+}
+
+label {
+    margin-right: 5px;
+    margin-top: 5px;
+    display: inline-block;
+    padding: 2px;
+}
+
+.button-selected{
+    box-shadow: 2px 2px 5px #888888;
+    background-color: #686868;
+    color: white;
+}
+
+.button-unselected{
+    color: gray;
+    background-color: lightgray;
+    border: 1px;
+}
+
+.district-label {
+    text-anchor: middle;
+    font-size: 13px;
+    font-weight: bold;
+    text-shadow: 0px 0px 3px white;
+
+}

@@ -1,0 +1,11 @@
+body {
+    text-align: center;
+}
+
+#pathSelection  {
+    pointer-events: none;
+}
+
+p {
+    text-align: left;
+}

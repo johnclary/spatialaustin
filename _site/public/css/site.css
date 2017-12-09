@@ -1,0 +1,61 @@
+html, body {
+  font-family: 'Raleway', sans-serif;
+  color: #808080;
+}
+
+body {
+    background-color: #FAFFFB;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.logo {
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.post-row {
+    padding-top: 20px;
+}
+
+
+.post-row:hover {
+    background-color: #f9f9f9;
+    cursor: pointer;
+}
+
+.post-link {
+    color: #808080;
+    text-decoration: none;
+}
+
+.post-link, .post-link:hover {
+    text-decoration: none;
+    color: #808080;
+}
+
+
+.post-thumb {
+    width: 100%;
+    vertical-align: middle;
+}
+
+
+.footer-links {
+    padding-top: 40px;
+}
+
+.footer-links *  {
+    text-align: center;
+    color: #808080;
+}
+
+
+.post-date {
+    font-style: italic;
+}
+
+

@@ -1,0 +1,26 @@
+# Permalinks
+#
+# Use of `relative_permalinks` ensures post links from the index work properly.
+permalink:           /:categories/:title/
+# relative_permalinks: true
+
+# Setup
+title:               S P A T I A L A U S T I N
+tagline:             'Paying attention to space and place in Austin, TX.'
+description:         'Paying attention to space and place in Austin, TX.'
+url:                 http://spatialaustin.com
+baseurl:             ''
+paginate:            30
+
+# About/contact
+author:
+  name:              John Clary
+  url:               https://twitter.com/spatialaustin
+  email:             spatialaustin@spatialaustin.com
+
+# Custom vars
+version:             1.0.0
+
+gems:
+  - jekyll-redirect-from
+  - jekyll-paginate

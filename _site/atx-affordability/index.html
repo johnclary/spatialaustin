@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="author" content="City of Austin Transportation Department">
+    <link rel="icon" href="/components/images/favicon.ico">
+    <meta name="title" content="Affordability in Austin&#58; Mapping Change.">
+    <meta name="description" content="Interactive map looking at affordability indicators from the US Census to examine how the cost of living in Austin has increased over time.">
+    
+  
+    <meta property="og:image" content="http://spatialaustin.com/public/images/atx-affordability-thumb.png" />
+  
+
+  
+    <meta name="description" content="Interactive map looking at affordability indicators from the US Census to examine how the cost of living in Austin has increased over time.">
+  
+
+  <title>
+    
+      Affordability in Austin&#58; Mapping Change. &middot; S P A T I A L A U S T I N
+    
+  </title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link rel="stylesheet" href="/public/css/site.css" type='text/css'>
+    <!-- Icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/dekker.png">
+    <link rel="shortcut icon" href="/public/favicon.ico">
+    <!-- RSS -->
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+    
+    
+</head>
+
+
+
+
+  <body>
+
+    <div class="container-fluid">
+
+      <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">  
+        <a href="/" title="Home"><img class="logo" src="/public/images/logo.png"></a>
+    </div>
+    <div class="col-md-3"></div>
+</div>
+
+      <div class="row">  
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+      <h3 class="post-title">Affordability in Austin&#58; Mapping Change.</h3>
+      <span class="post-date">12 Dec 2014</span>
+      <p><a href="http://spatialaustin.github.io/maps/atx-affordability-map">Click for full screen map</a></p>
+
+<iframe src="http://spatialaustin.github.io/maps/atx-affordability-map" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" height="600" width="100%"></iframe>
+
+<p>You can’t run for public office in Austin <a href="http://www.edscruggsfordistrict8.org/affordability/">without talking about affordability</a>. More than any other issue, the question of affordability is emblematic of the changes taking place in our city, and residents’ and developers’ divergent visions of how Austin’s precipitous growth should be managed.</p>
+
+<p>Most candidates (with a few <a href="http://www.ellenforaustin.com/">exceptions</a> ) seem willing to admit that there is no singular policy initiative that can be taken up to address affordability. <a href="http://www.kathieforaustin.com/issues/affordability/">Kathy Tovo</a> and <a href="http://www.oraatx.com/issues/">Ora Houston</a> both do a nice job explaining that affordability is a multifaceted issue; to sustainably address Austin’s <a href="http://www.austintexas.gov/sites/default/files/files/NHCD/2014_Comprehensive_Housing_Market_Analysis_-_Document_reduced_for_web.pdf">growing affordability</a> gap policy makers must not simply consider the rising cost of buying or renting a home, but also wages, access to transportation, and the city’s <a href="http://www.vice.com/read/austin-was-built-to-be-segregated">history of racial segregation</a> and <a href="https://soa.utexas.edu/file/city-forum-east-austin-environmental-justice-project-bjorn-sletto">environmental injustice</a>.</p>
+
+<p>While most of us are probably capable of making an educated guess as to where Austin’s affordability needs are most pressing, I have been curious to see (cartographically, of course) which specific parts of the city have experienced the most dramatic changes in affordability in recent years. As a first step, I’ve cherry-picked three economic indicators that shed light on one piece of the affordability puzzle: median household income, median gross rent, and median home value.</p>
+
+<p>The above map depicts the degree to which each of those indicators changed from the year 2000 to 2012 in Austin census tracts. You can pan/zoom/hover/touch to you heart’s content.</p>
+
+<p>I welcome your thoughts and feedback interpreting these maps. I don’t know the city well enough to comment on many of the high levels of change that are popping up. One reading of this map is that it’s a paint-by-number of East Austin gentrification. The east side has seen some the steepest increases across the board. If we take rising east side incomes to reflect  an influx of high-earning residents into the east side, you can almost see home values and rents paving the way for future gentrification east of Springdale and Airport.</p>
+
+<p>A few caveats. <a href="http://www.census.gov/acs/www/#">American Community Survey</a> data can be quite noisy at the census tract level. Some of the tracts on the above map have large margins of error, especially in areas with few housing units. I’m willfully ignoring error here (problem = solved!), but you can view this information <a href="http://spatialaustin.com/mapData/2000_2012tractChangeFinal.csv">in my CSV</a>. Another issue is that census tract geometries are subject to change every ten years, so comparing longitudinal census data requires spatial interpolation, <a href="http://www.tandfonline.com/doi/abs/10.1080/00330124.2014.905156">to varying degrees of confidence</a>. Changes to Austin’s census tracts since 2000 <a href="http://spatialaustin.com/mapData/2000_2012TractAreas.csv">have been minor</a>, so I don’t consider this much of an issue.</p>
+
+<p><em>Sources: <a href="http://www.census.gov/acs/www/#">US Census</a>; <a href="http://d3js.org/">D3.js</a>; <a href="http://leafletjs.com/">Leaflet.js</a>; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>; <a href="http://bost.ocks.org/mike/">bost.ocks.org</a>; <a href="http://mapshaper.org/">Mapshaper</a>; <a href="http://stamen.com/">Stamen</a>; <a href="http://colorbrewer2.org/">ColorBrewer</a></em></p>
+
+  </div>
+  <div class="col-md-3"></div>
+</div>
+
+  
+
+      <div class="row footer-links">
+  <div class="col-md-2"></div>
+    <div class="col-md-8">  
+      <div class="row">
+        <div class="col">
+          <h6 class="footer-link" ><a href="/about">About Spatial Austin</a> <i class="fa fa-info-circle"></i></h6>
+        </div>
+      </div>
+    </div>
+  <div class="col-md-8"></div>
+</div>
+    </div>
+  </body>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+  <script src="https://use.fontawesome.com/f7d7f01d12.js"></script>
+  </script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

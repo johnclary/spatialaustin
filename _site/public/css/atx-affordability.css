@@ -1,0 +1,64 @@
+html, body {
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	margin: 0;
+	padding: 0;
+}
+
+p { 
+	margin: 0
+}
+
+p.legend { 
+    height: 0;	
+}
+
+#pathSelection {
+    pointer-events: none;
+}
+
+#map {
+    width:100%;
+    height:100%;
+}
+
+.legend {
+    
+    color: #555;
+}
+
+.legend span {
+    width: 20px;
+    height: 20px;
+    float: left;
+    margin-right: 8px;
+    opacity: 0.9;
+    
+}
+
+.info {
+    padding: 6px 8px;
+    font: 14px/20px Arial, Helvetica, sans-serif;
+    background: white;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0 0 15px rgba(0,0,0,0.4);
+    border-radius: 2px;
+    pointer-events: all;
+}
+
+#tooltip {
+        pointer-events: none;
+}
+
+#tooltip.hidden {
+        display: none;
+}
+
+.leaflet-control-touchhover {
+    opacity: 1;
+    border-radius: 2px;
+    padding: 6px 8px;
+    background: white;
+}

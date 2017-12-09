@@ -1,0 +1,44 @@
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="author" content="City of Austin Transportation Department">
+    <link rel="icon" href="{{ site.baseurl }}/components/images/favicon.ico">
+    <meta name="title" content="{{ page.title }}">
+    <meta name="description" content="{{  page.description }}">
+    
+  {% if page.thumb %}
+    <meta property="og:image" content="http://spatialaustin.com/public/images/{{page.thumb}}" />
+  {% endif %}
+
+  {% if page.description %}
+    <meta name="description" content="{{ page.description }}">
+  {% endif %}
+
+  <title>
+    {% if page.title == "Home" %}
+      {{ site.title }} &middot; {{ site.tagline }}
+    {% else %}
+      {{ page.title }} &middot; {{ site.title }}
+    {% endif %}
+  </title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ site.baseurl }}/public/css/site.css" type='text/css'>
+    <!-- Icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ site.baseurl }}/public/dekker.png">
+    <link rel="shortcut icon" href="{{ site.baseurl }}/public/favicon.ico">
+    <!-- RSS -->
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+    {% if page.custom_css %}
+      {% for stylesheet in page.custom_css %}
+      <link rel="stylesheet" href="{{ site.baseurl }}/public/css/{{ stylesheet }}.css" media="screen" type="text/css">
+      {% endfor %}
+    {% endif %}
+    
+</head>
+
+

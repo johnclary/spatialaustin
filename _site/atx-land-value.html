@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="author" content="City of Austin Transportation Department">
+    <link rel="icon" href="/components/images/favicon.ico">
+    <meta name="title" content="Property Values, Affordability, and the Promise of Appraisal Data">
+    <meta name="description" content="Interactive map of Austin land value and affordability change over time.">
+    
+  
+    <meta property="og:image" content="http://spatialaustin.com/public/images/atx-land-value-thumb.png" />
+  
+
+  
+    <meta name="description" content="Interactive map of Austin land value and affordability change over time.">
+  
+
+  <title>
+    
+      Property Values, Affordability, and the Promise of Appraisal Data &middot; S P A T I A L A U S T I N
+    
+  </title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link rel="stylesheet" href="/public/css/site.css" type='text/css'>
+    <!-- Icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/dekker.png">
+    <link rel="shortcut icon" href="/public/favicon.ico">
+    <!-- RSS -->
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+    
+    
+</head>
+
+
+
+
+  <body>
+
+    <div class="container-fluid">
+
+      <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">  
+        <a href="/" title="Home"><img class="logo" src="/public/images/logo.png"></a>
+    </div>
+    <div class="col-md-3"></div>
+</div>
+
+      <div class="row">  
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+      <h3 class="post-title">Property Values, Affordability, and the Promise of Appraisal Data</h3>
+      <span class="post-date">02 Sep 2015</span>
+      <p>Rising property values translate to higher property taxes and rents, so it’s important to understand where and by how much property values are changing if we want to understand where Austin’s household “<a href="https://www.google.com/search?q=austin+%22affordability+crisis%22&amp;ie=utf-8&amp;oe=utf-8" target="_blank">affordability crisis</a>” is having most severe impact.</p>
+
+<p>To that end, I’ve spent a few months trying to answer what I thought was a simple question: Where have Austin’s residential property values increased the most? For all the talk about affordability in Austin, it can be surprisingly difficult to make sense of–or even access–Austin’s property appraisal data.</p>
+
+<p>More about that in minute. First, the map. What we have here is the estimated change in residential land values from the year 2005 to 2015, adjusted for inflation:</p>
+
+<p><a href="http://spatialaustin.github.io/maps/atx-land-value-map/" target="_blank">Click here for full screen</a></p>
+
+<iframe src="http://spatialaustin.github.io/maps/atx-land-value-map" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" height="500" width="100%"></iframe>
+
+<p>The map is based on data from the Travis County Appraisal District (TCAD), the entity responsible for appraising most of Austin’s property values (Williamson and Hays counties contain fractions of the city).</p>
+
+<p>In terms of publicly-available real estate data, appraisal district data is without question the most granular and extensive. The agency maintains annually-updated, parcel-level data of the appraised value of land and buildings of every property in the county. TCAD also keeps records of the age and type of buildings on a property, as well as any tax exemptions granted.</p>
+
+<p>Unfortunately, TCAD datasets are costly and difficult to access. A single tax year of TCAD data will set you back $55, the GIS shapefile costs an additional $25, and you’ll need Microsoft Access to unpack the files. Cost and format are real barriers to using this data, and the generous folks at <a href="http://open-austin.org/">Open Austin</a> are looking into potentially hosting the TCAD datasets on their <a href="http://data.open-austin.org/">data portal</a></p>
+
+<p>To make the map, I calculated the difference in appraised value from 2005 – 2015 for roughly 150,000 residential properties across Austin, and then created a continuous surface of estimated land value change through a process called <a href="https://docs.qgis.org/2.2/en/docs/gentle_gis_introduction/spatial_analysis_interpolation.html#inverse-distance-weighted-idw">inverse distance weighting</a> (IDW). Interpolating data in this way is not an exact science; outliers and areas with a low density of sampling points lower the quality of the estimates. I’ve done my best to account for both of these conditions, and think that the readability of the isoline map is worth a tradeoff in precision.</p>
+
+<p>While it’s no revelation that property values east of I-35 have increased more dramatically than anywhere else in the city, the map enables us to see just how extreme those changes have been over the last decade. With our TCAD data in hand, I see this map as a starting point for digging into some of the interesting questions we can ask about the relationship between the Austin real estate market, our tax system, and ongoing affordability issues. I’m especially keen to explore how increasing property values are translating to changes in rents, which do not have protections like <a href="http://www.austinmonitor.com/stories/2015/06/council-adopts-six-percent-homestead-exemption/">homestead exemptions</a> to mitigate rising costs. More on that to come. As usual, your feedback is welcome.</p>
+
+<p>Special thanks to <a href="https://twitter.com/McCnnll">@McCnnll</a>, <a href="https://twitter.com/sharlalikesyou">@sharlalikesyou</a>, and <a href="https://twitter.com/openaustin">@openaustin</a> for their feedback at the Gov and Civic Hack Meetup.</p>
+
+<p><em>Sources: <a href="http://www.traviscad.org/property_search.html">TCAD</a>, <a href="http://leafletjs.com/">Leaflet</a></em></p>
+
+  </div>
+  <div class="col-md-3"></div>
+</div>
+
+  
+
+      <div class="row footer-links">
+  <div class="col-md-2"></div>
+    <div class="col-md-8">  
+      <div class="row">
+        <div class="col">
+          <h6 class="footer-link" ><a href="/about">About Spatial Austin</a> <i class="fa fa-info-circle"></i></h6>
+        </div>
+      </div>
+    </div>
+  <div class="col-md-8"></div>
+</div>
+    </div>
+  </body>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+  <script src="https://use.fontawesome.com/f7d7f01d12.js"></script>
+  </script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,44 @@
+---
+layout: default
+title: Home
+description: Paying attention to space and place in Austin, TX.
+redirects_from:
+- /category/uncategorized/
+---
+
+{% for post in paginator.posts %}
+    {% unless post.hidden %}
+
+    <div class="row post-row" data-href={{site.baseurl}}{{post.url}}>  
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <a class="post-link" href="{{site.baseurl}}{{post.url}}">
+                <h5 class="post-title">
+                    {{ post.title }}
+                    <img class="post-thumb" src="{{ site.baseurl }}/public/images/{{post.thumb}}">
+                </h3>
+            </a>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    {% endunless %}
+{% endfor %}
+
+<script>
+    //  enable click entire row to view post
+    window.onload = function() {
+        var refs = document.getElementsByClassName('post-row');    
+        for (var i = 0; i < refs.length; i++) {
+            refs[i].addEventListener('click', function() {
+                var attribute = this.getAttribute("data-href");
+                window.location = attribute;
+            })
+        }
+    }
+</script>
+
+
+
+
+
+

@@ -1,0 +1,79 @@
+
+<!--created by John Clary - spatialaustin.com - Agust 2015 -->
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="utf-8">
+<title>ATX Land Value Change</title>
+<link rel="stylesheet" href="./css/leaflet.css" />
+<link rel="stylesheet" href="./css/atxlandvals.css" />
+<script src="./js/leaflet.js"></script>
+<script src="./js/d3.min.js"></script>
+<script src="./js/atxlandvals.js"></script>
+
+<style type="text/css">
+
+html, body {
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	margin: 0;
+	padding: 0;
+}
+
+#map {
+	width: 100%;
+	height: 100%;
+}
+
+.leaflet-container {
+    background: black;
+}
+
+.attribText {
+	color: white;
+	font: 14px sans-serif;
+}
+
+.legend  {
+	color: white;
+	font: 10px sans-serif;
+	text-align: right;
+	line-height: 1px;
+	<!-- pointer-events: none; -->
+}
+
+.legend-title{
+	color: white;
+	font: 20px sans-serif;
+	text-align: left;
+}
+
+.legend-text {
+	color: white;
+	font: 14px sans-serif;
+	text-align: left;
+}
+
+span {	
+	width: 10px;
+	height: 10px;
+	display: inline-block;
+	margin-right: 8px;
+	opacity: 0.9;
+	vertical-align: middle;
+}
+
+p {
+	margin: 0;
+	padding: 0;
+}
+
+
+
+</style>
+</head>
+<body>
+<div id="map"></div>
+</body>
+</html>
