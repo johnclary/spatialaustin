@@ -2,9 +2,7 @@
 
 Thank you for visiting Spatial Austin!
 
-My site is built on the [Lanyon](https://github.com/poole/lanyon) theme for [Jekyll](https://jekyllrb.com/) by @mdo.
-
-Also, my name is John Clary and I am a municipal worker living in Austin, Texas.
+My name is John Clary and I am a municipal worker living in Austin, Texas.
 
 If you have a question, would like to collaborate, or just need someone to talk to, drop me a line:
 
