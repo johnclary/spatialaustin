@@ -71,7 +71,7 @@ var formatObj = {
     "avg_annual_savings" : "$,.2r"
 };
 
-makeMap("/public/data/smd_simplified.json");
+// makeMap("/public/data/smd_simplified.json");
 
 d3.csv("/public/data/atx_hs_exempt_final.csv", function(data) {  
 
