@@ -11,10 +11,10 @@ To that end, I've spent a few months trying to answer what I thought was a simpl
 
 More about that in minute. First, the map. What we have here is the estimated change in residential land values from the year 2005 to 2015, adjusted for inflation: 
 
-<a href="http://spatialaustin.github.io/maps/atx-land-value-map/" target="_blank">Click here for full screen</a>
+<a href="/maps/atx-land-value-map/" target="_blank">Click here for full screen</a>
 
 
-<iframe src="http://spatialaustin.github.io/maps/atx-land-value-map" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" height="500" width="100%"></iframe>
+<iframe src="/maps/atx-land-value-map" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" height="500" width="100%"></iframe>
 
 The map is based on data from the Travis County Appraisal District (TCAD), the entity responsible for appraising most of Austin's property values (Williamson and Hays counties contain fractions of the city).
 

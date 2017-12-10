@@ -7,7 +7,7 @@ redirect_from:
  - /texas-land-area-comparator/
 ---
 
-<iframe src="http://spatialaustin.github.io/maps/texas-land-area-comparator-map" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" height="720" width="100%"></iframe>
+<iframe src="/maps/texas-land-area-comparator-map" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" height="720" width="100%"></iframe>
 
  If you’ve spent much time in Texas, you have inevitably been exposed to any number of platitudes which extol the state’s immense size. You may even be capable of producing, extempore, a viable estimate of the number of Rhode Islands that could fit inside the state (221), or where Texas would rank in area among other nations if she were not relegated to federated statehood (40th).
 

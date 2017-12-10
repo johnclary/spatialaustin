@@ -10,7 +10,7 @@ redirect_from:
 ---
 [Click for full screen map](http://spatialaustin.github.io/maps/atx-affordability-map)
 
-<iframe src="http://spatialaustin.github.io/maps/atx-affordability-map" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" height="600" width="100%"></iframe>
+<iframe src="/maps/atx-affordability-map" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" height="600" width="100%"></iframe>
 
 You can’t run for public office in Austin [without talking about affordability](http://www.edscruggsfordistrict8.org/affordability/). More than any other issue, the question of affordability is emblematic of the changes taking place in our city, and residents’ and developers’ divergent visions of how Austin’s precipitous growth should be managed.
 

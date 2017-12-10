@@ -1,3 +1,0 @@
-thumbnail should be 1200w x 120h
-
-capitalize the file extension and do so in the front matter of the post, too.

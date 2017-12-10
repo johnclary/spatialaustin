@@ -1,9 +1,0 @@
-.background {
-    fill: black;
-    /* fill: #D1E4EB; */
-}
-
-body {
-    font-size: 10px;
-    font-family: sans-serif;
-}

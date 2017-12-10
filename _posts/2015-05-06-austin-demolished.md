@@ -6,7 +6,7 @@ description: Photos and data visualization of Austin building demolitions over t
 redirect_from:
  - /austindemolished/
 ---
-<iframe src="http://spatialaustin.github.io/maps/atx-demo-home-frame" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" height="500" width="470"></iframe>
+<iframe src="/maps/atx-demo-home-frame" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" height="500" width="470"></iframe>
 
 Above this line of text your web browser should be cycling through images of the more than 5,000 Austin properties that have been permitted for demolition since 2007. Among them, of course, is the site of the former Jumpolin piñata store on E. Cesar Chavez, which [was bulldozed in February](http://www.austinchronicle.com/news/2015-02-20/sign-of-the-times/)—piñatas and all—to make way for an SXSW event.
 
@@ -16,7 +16,7 @@ With Austin’s astonishing rate of growth in mind, I’ve set out to examine tr
 
 Hover over/touch the chart to view monthly totals: 
 
-<iframe src="http://spatialaustin.github.io/maps/atx-demo-charts" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" height="700" width="100%"></iframe>
+<iframe src="/maps/atx-demo-charts" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" height="700" width="100%"></iframe>
 
 <em><small>Building demolitions per month by City of Austin council district, 2007-2015.<small><em>
 

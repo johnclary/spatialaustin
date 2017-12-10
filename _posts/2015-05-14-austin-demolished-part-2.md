@@ -6,7 +6,7 @@ description: Interactive map of Austin building demolitions over time.
 ---
 [Click for full screen map](http://spatialaustin.github.io/maps/atx-demo-map)
 
-<iframe src="http://spatialaustin.github.io/maps/atx-demo-map" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" height="500" width="100%"></iframe>
+<iframe src="/maps/atx-demo-map" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" height="500" width="100%"></iframe>
 
 Following up on our look at [building demolitions by council district](http://spatialaustin.github.io/austin-demolished/), we now have a map with which to explore the 5,000 or so demolition permits that have been issued in Austin since 2007.
 
