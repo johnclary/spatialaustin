@@ -1,5 +1,4 @@
-
-var screenW = window.innerWidth;
+var screenW = $( "#container" ).parent().width();
 
 var margin = {top: 4, right: 20, bottom: 20, left: 25};
 
@@ -7,7 +6,7 @@ var maxWidth = screenW + margin.right + margin.left > 800 ? 800 : screenW;
 
 var width = maxWidth - margin.right - margin.left;
 
-var height = .7 * width + margin.top + margin.bottom;
+var height = .6 * width + margin.top + margin.bottom;
 
 var widthPadding = 0;
 
@@ -70,8 +69,6 @@ var formatObj = {
     "pct_hs_exempt_sf" : "0.0%",
     "avg_annual_savings" : "$,.2r"
 };
-
-// makeMap("/public/data/smd_simplified.json");
 
 d3.csv("/public/data/atx_hs_exempt_final.csv", function(data) {  
 
@@ -226,8 +223,6 @@ d3.csv("/public/data/atx_hs_exempt_final.csv", function(data) {
 function makeMap(json_path){
 
     d3.json(json_path, function(json) {
-
-        pizza = json;
 
         var strkWidth = 2;
 
