@@ -4,17 +4,28 @@ title: 'District by District: Homestead Exemptions'
 thumb: atx-hs-exempt-thumb.png
 hidden: false    
 description: Crunching the numbers on Austin's homestead exemptions
----
+custom_js:
+- leaflet
+- atx-hs-chart
 
-Last month, Austin City Council voted to increase the property tax homestead exemption from 6% to 8%. 
+custom_css:
+- hs-exempt
+---
 
 Homestead exemptions, which limit the taxable value of a homeowner's property, are the stuff of controversy in Austin. On the one hand, raising the homestead exemption reduces funds for city services to the benefit of homeowners. But if you own a home in Austin, you're no doubt feeling the squeeze of Austin's [dramatically increasing land values](/atx-land-value).
 
-There's been [plenty](www.austinchronicle.com/news/2016-07-08/council-no-marxism-around-here/) of [reporting](http://www.austinmonitor.com/stories/2016/06/slim-margin-council-members-approve-8-percent-homestead-exemption/) on the topic of property tax exemptions, but we keep seeing the same handful of statistics in nearly every article. (Probably because the gatekeeper of Austin's property tax data does a [miserable job of making it publicly available](http://www.traviscad.org/faq_request_info.html)).
+Last month, Austin City Council voted to increase the property tax homestead exemption from 6% to 8%. There's been [plenty](www.austinchronicle.com/news/2016-07-08/council-no-marxism-around-here/) of [reporting](http://www.austinmonitor.com/stories/2016/06/slim-margin-council-members-approve-8-percent-homestead-exemption/) on the topic, but we keep seeing the same handful of statistics in nearly every article. (Probably because the gatekeeper of Austin's property tax data does a [miserable job of making it publicly available](http://www.traviscad.org/faq_request_info.html)).
 
 I've been wondering how the number of homestead exemptions and property values compare across Austin's council districts, so I created this handy chart. You can hover/touch each bar to view its datapoint.
 
-<iframe id='idIframe' onload='iframeLoaded()' src="/maps/austin-homestead-exemption-chart" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" width="100%"></iframe>
+<div id='selectors'></div>
+
+<div id='container'></div>
+
+<div id='map-container'></div>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+
 
 <em><small>Homestead exemptions by council district in Austin, TX. Source: [TCAD](http://www.traviscad.org/) <small><em>
 
@@ -29,17 +40,3 @@ As usual, a few caveats. The data we're looking at includes only single-family d
 Interested in helping make property tax data more open and transparent? [Join us!](https://github.com/open-austin/liberate-appraisal-data)
 
 *Source: Travsi County Appraisal District*
-
-<script type="text/javascript">
-  function iframeLoaded() {
-      var iFrameID = document.getElementById('idIframe');
-      
-      var width = document.getElementById('idIframe').offsetWidth
-
-      if(iFrameID) {
-            // here you can make the height, I delete it first, then I make it again
-            iFrameID.height = width * .7 + 40;
-            iFrameID.height = iFrameID.contentWindow.document.body.scrollHeight + "px";
-      }   
-  }
-</script>
