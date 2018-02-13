@@ -1,6 +1,3 @@
-//  axis labels
-//  decide on transition y axis or not
-
 var clicked_feature;
 var chart_init = false;
 var formatPct = d3.format(".1%");
@@ -41,11 +38,11 @@ d3.json('/public/data/austin_tracts.json', function(error, data) {
 
         var map = new L.Map('map', map_options);
 
-    	var tracts = new L.GeoJSON(data, {
-        	style: function (feature) {
+        var tracts = new L.GeoJSON(data, {
+            style: function (feature) {
                 var style = getStyle(feature)
                 return style;
-        	},
+            },
 
             onEachFeature: function (feature, layer) {
                 
@@ -82,7 +79,7 @@ d3.json('/public/data/austin_tracts.json', function(error, data) {
 
                 });
             }
-    	});
+        });
 
         map.addLayer(layers['stamen_toner_lite'])
             .addLayer(tracts);
@@ -311,15 +308,13 @@ function makeChart(data, info) {
 }
 
 
-
 function getDimensions() {
     var screenW = window.innerWidth;
     var screenH = window.innerHeight;
     var margin = {top: 20, right: 20, bottom: 20, left: 25};
     var width = screenW + margin.right + margin.left > 400 ? 350 : 200;
     width = width - margin.left - margin.right
-    var height = 200 - margin.top - margin.bottom;
+    var height = screenH + margin.top + margin.bottom > 600 ? 200 : 150;
+    var height = height - margin.top - margin.bottom;
     return { 'width' : width, 'height' : height, 'margin' : margin, 'screenW' : screenW, 'screenH' : screenH }
 }
-
-
