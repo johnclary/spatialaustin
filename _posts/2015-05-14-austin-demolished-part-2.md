@@ -4,7 +4,7 @@ title: Austin, Demolished&#58; Eight Years of Wrecking-ball Data (Mapped)
 thumb: atx-demos-thumb.PNG
 description: Interactive map of Austin building demolitions over time.
 ---
-[Click for full screen map](http://spatialaustin.github.io/maps/atx-demo-map)
+[Click for full screen map](/maps/atx-demo-map)
 
 <iframe src="/maps/atx-demo-map" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" height="500" width="100%"></iframe>
 

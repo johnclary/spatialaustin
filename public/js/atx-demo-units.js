@@ -1,12 +1,13 @@
-//  https://www.google.com/maps/@30.2840865,-97.7716971,3a,76.1y,24.21h,85.44t/data=!3m6!1e1!3m4!1sT9kFV7OEYtJET5J6o6jEMg!2e0!7i13312!8i6656
+//  axis labels
+//  decide on transition y axis or not
+
 var clicked_feature;
+var chart_init = false;
 var formatPct = d3.format(".1%");
 
 var colorScale = d3.scaleSequential(d3.interpolateRdPu)
     .domain([0,.2]);
 
-
-// set the ranges
 var x = d3.scaleBand()
           .padding(0.1);
 
@@ -32,87 +33,117 @@ d3.json('/public/data/austin_tracts.json', function(error, data) {
 
     d3.json('/public/data/demos_by_year.json', function(error, demos) {
 
+        stuff=[]
+        dave=d3.values(demos)
+        dave.forEach(function(x) { bill = d3.values(x); bill.forEach(function(y) { stuff.push(y)})});
+        // get max demos in any single year (it's onion creek--132)
+        // var max_demo = d3.max(d3.values(demos), d => d3.max(d3.values(d)));
+
+        var map = new L.Map('map', map_options);
+
     	var tracts = new L.GeoJSON(data, {
         	style: function (feature) {
                 var style = getStyle(feature)
                 return style;
         	},
+
             onEachFeature: function (feature, layer) {
-                layer.on('click', function (pt) {
-                    if (clicked_feature) {
-                        tracts.resetStyle(clicked_feature);
-                    }
-                    clicked_feature = this;
-                    var style = getStyle(feature, click=true)
-                    this.setStyle(style);
-                    var chart_data = demos[feature.properties.FID];
-                    map.panTo(pt.latlng);
-                    map.panBy([0,-100])
-                    console.log(pt);
-
-                });
-
-                var pct_demo = formatPct(feature.properties.pct_demo);
-                var num_demo = feature.properties.num_demo;
                 
+                layer.on('click', function (pt) {
+                    var num_demo = feature.properties.num_demo;
+                    var pct_demo = '(' + formatPct(feature.properties.pct_demo) + ')';
+                    var info = '<b>Single-Family Units Demolished since 2000: ' + num_demo +  ' ' + pct_demo + '</b>';
+                    var demo_data = demos[feature.properties.FID]
 
-                if (!isNaN(num_demo)) {
-                    pct_demo = '(' + pct_demo + ')';
+                    if (clicked_feature && clicked_feature == layer) {
+                        //  clicked on already-clicked feature
+                        //  reset style
+                        clicked_feature = null;
 
-                    layer.bindPopup('<div class="chart-wrapper"><text>SF Units Demolished: <b>' + num_demo +  ' ' + pct_demo + '</b></text></div>');
+                    } else {
+                        clicked_feature = layer;    
+                    }
+                    
+                    //  make sure there's data in the clicked feature
+                    if (d3.values(demo_data).length > 0) {
+                        showChart(demo_data, info);
+                    } else {
+                        clicked_feature = null;
+                    }
 
-                    layer.on('popupopen', function(){
-                        var demo_data = demos[feature.properties.FID]
-                        makeChart(demo_data);    
+                    if (!clicked_feature) {
+                        showLegend();
+                    }
+
+                    tracts.eachLayer(function(layer_2) {
+                        var style = getStyle(layer_2.feature)
+                        layer_2.setStyle(style);
                     });
 
-                }
+                });
+            }
+    	});
 
-
-        }
-    	})
-
-        var map = new L.Map('map', map_options)
-            .addLayer(layers['stamen_toner_lite'])
-            .addLayer(tracts)
-            .on('click', function(){
-                //  reset styles on map click
-                if (clicked_feature) {
-                    tracts.resetStyle(clicked_feature);
-                    clicked_feature = null;
-                }
-            })
-            .on('popupclose', function(){
-                //  reset styles when popup closed
-                if (clicked_feature) {
-                    tracts.resetStyle(clicked_feature);
-                    clicked_feature = null;
-                }
-
-                // display legend (may have been hidden on smaller screen)
-                d3.select('.legend').style('visibility', 'visible');
-            });
+        map.addLayer(layers['stamen_toner_lite'])
+            .addLayer(tracts);
 
         makeLegend(map);
+        makeInfoPane(map);
+
+        var close_button = d3.select('.info-pane')
+            .append('div')
+            .attr('class', 'info-pane-close')
+            .on('click', function(){
+                showLegend();
+                clicked_feature = null;                
+                tracts.eachLayer(function(layer_2) {
+
+                    var style = getStyle(layer_2.feature)
+                    layer_2.setStyle(style);
+                });
+            });
+
+        close_button.append('a')
+            .style('position', 'absolute')
+            .style('right', '5px')
+            .style('top', '0px')
+            .style('cursor', 'pointer')
+            .style('font-size', '1.5em')
+            .html('x');
+
+
 
     })
         
 });
 
 
-function getStyle(feature, click=false) {
+function showLegend() {
+    d3.select('.info-pane').style('visibility', 'hidden');
+    d3.select('.legend').style('visibility', 'visible').style('position', 'relative');
+    
+}
+
+
+function getStyle(feature) {
     var pct = feature.properties.pct_demo;
     var color = colorScale(pct);
-    var fillOpacity = .7;
     var stroke = false;
-    var weight = 0;
+    var weight = 0;            
+    var fillOpacity = .7;
+
+    if (clicked_feature) {
+        if (feature == clicked_feature.feature) {
+            fillOpacity = .7;
+            stroke = true;
+        } else {
+            fillOpacity = .25;
+        }
+    }
 
     if (isNaN(pct)) {
         color = '#000';
         fillOpacity = 0;
-    } else if (click) {
-        weight = 5;
-        stroke = true;
     }
 
     return {
@@ -127,13 +158,14 @@ function makeLegend(map) {
     
     var legend = L.control({position: 'bottomright'});
 
-    legend.onAdd = function (map) {
+    legend.onAdd = function(map) {
 
         var div = L.DomUtil.create('div', 'info legend'),
             pcts = [0, 4, 8, 12, 16, 20],
             labels = ['0%', '4%', '8%', '12%','16%', '20%'];
 
         div.innerHTML += '<p><b>% Single-Family Units Demolished</b><br>2000-2017</p>'
+        
         // straight from the leaflet tutorial
         for (var i = 0; i < labels.length; i++) {
             div.innerHTML +=
@@ -141,9 +173,8 @@ function makeLegend(map) {
                 labels[i] + (labels[i + 1] ? '&ndash;' + labels[i + 1] + '<br>' : '+');
         }
         
-
         attribText = d3.select(div).append("div");
-        attribText.append("p").attr("class", "attribText").text("Created by ").append("a").attr("href", 'http://spatialaustin.com').attr("target", "_blank").html("<b>S P A T I A L A U S T I N</b>");
+        attribText.append("p").attr("class", "attribText").text("Created by ").append("a").attr("href", '/austin-demolished-neighborhood-trends-visualized/').html("<br><b>S P A T I A L A U S T I N</b>");
 
         return div;
     };
@@ -152,7 +183,71 @@ function makeLegend(map) {
 };
 
 
-async function makeChart(data) {
+
+function makeInfoPane(map) {
+    
+    var infoPane = L.control({position: 'bottomright'});
+
+    infoPane.onAdd = function(map) {
+
+        var div = L.DomUtil.create('div', 'info-pane');
+
+        div.innerHTML += '<div class="title"></div><div id="chart-wrapper"></div><div id="attribution"></div>'
+        
+        return div;
+    };
+
+    infoPane.addTo(map); 
+
+    d3.select("#attribution")
+        .append("p").attr("class", "attribText").text("Created by ")
+        .append("a").attr("href", '/austin-demolished-neighborhood-trends-visualized/')
+        .html("<b>S P A T I A L A U S T I N</b>");
+
+    return infoPane;
+};
+
+
+function showChart(data, info) {
+    //  show info pane
+    d3.select('.info-pane').style('visibility', 'visible');
+
+    //  hide legend on chart display
+    d3.select('.legend').style('visibility', 'hidden').style('position', 'absolute');   
+
+    if (!chart_init) {
+        makeChart(data, info);
+    } else {
+        updateChart(data, info);
+    }
+}
+
+
+function updateChart(data, info) {
+    var dims = getDimensions();
+    var demos = d3.values(data);
+
+    // append the rectangles for the bar chart
+    d3.select('#chart-wrapper')
+        .selectAll(".bar")
+        .data(demos)
+        .transition()
+        .attr("height", function(d) { return dims.height - y(d); })
+        .attr("y", function(d) { return y(d); })
+
+    d3.select('#chart-wrapper')
+        .select('svg')
+        .select('g')
+        .append("g")
+        .attr("class", "axisWhite yAxis")
+      .call(d3.axisLeft(y).tickFormat(d3.format("d")));
+
+}
+
+
+function makeChart(data, info) {
+    chart_init = true;
+
     //  get chart dimensions
     var dims = getDimensions();
 
@@ -160,19 +255,15 @@ async function makeChart(data) {
     x.range([0, dims.width])
     y.range([dims.height, 0]);
 
-    d3.select('.leaflet-popup-content-wrapper')
-        .style('width', (dims.width + dims.margin.left + dims.margin.right + 5) + 'px');
+    //  adjust size of pane to accomodate chart
+    d3.select('#chart-wrapper')
+        .style('width', (dims.width + dims.margin.left + dims.margin.right + 5) + 'px')
 
+    d3.select('.title')
+        .style('max-width', dims.width + 'px')
+        .html(info);
 
-    (dims.screenH < 600 || dims.screenH < 600) ? d3.select('.legend').style('visibility', 'hidden') : '';
-
-    await sleep(200);
-    
-    if (!data) {
-        return;
-    }
-
-    var svg = d3.select('.leaflet-popup-content')
+    var svg = d3.select('#chart-wrapper')
         .append('svg')
         .attr('class', 'chart')
         .attr("width", dims.width + dims.margin.left + dims.margin.right)
@@ -185,7 +276,10 @@ async function makeChart(data) {
     var demos = d3.values(data);
 
     x.domain(years);
-    y.domain([0, d3.max(demos)]);
+
+    //  i've hardcoded the y max as 45 because Onion Creek skews the y axis
+    //  see commented d3.max usage above calculate the y domain from the data
+    y.domain([0,35]);
 
     // append the rectangles for the bar chart
     svg.selectAll(".bar")
@@ -197,49 +291,35 @@ async function makeChart(data) {
         .attr("y", function(d) { return y(d); })
         .attr("height", function(d) { return dims.height - y(d); });
 
-      // add the x Axis
-      svg.append("g")
-          .attr("transform", "translate(0," + dims.height + ")")
-          .attr("class", "axisWhite")
-          .call(d3.axisBottom(x).tickFormat(d3.format("d")));
+    // add the x Axis
+    svg.append("g")
+      .attr("transform", "translate(0," + dims.height + ")")
+      .attr("class", "axisWhite xAxis")
+      .call(d3.axisBottom(x).tickFormat(d3.format("d")));
 
       // add the y Axis
-      svg.append("g")
-            .attr("class", "axisWhite")
-          .call(d3.axisLeft(y).tickFormat(d3.format("d")));
+    svg.append("g")
+        .attr("class", "axisWhite yAxis")
+      .call(d3.axisLeft(y).tickFormat(d3.format("d")));
 
-      var ticks = d3.selectAll(".tick text");
-      
-      ticks.attr("class", function(d,i){
-        if(i%4 != 0) d3.select(this).remove();
-      });
+    var ticks = d3.select('.xAxis').selectAll(".tick text");
 
-    }
+    ticks.attr("class", function(d,i){
+        if (i%4 != 0) d3.select(this).remove();
+    });
 
- 
-// https://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
 }
+
+
 
 function getDimensions() {
     var screenW = window.innerWidth;
     var screenH = window.innerHeight;
-    var margin = {top: 20, right: 20, bottom: 40, left: 25};
-    var width = screenW + margin.right + margin.left > 600 ? 350 : 200;
+    var margin = {top: 20, right: 20, bottom: 20, left: 25};
+    var width = screenW + margin.right + margin.left > 400 ? 350 : 200;
     width = width - margin.left - margin.right
     var height = 200 - margin.top - margin.bottom;
     return { 'width' : width, 'height' : height, 'margin' : margin, 'screenW' : screenW, 'screenH' : screenH }
 }
-
-
-
-
-
-
-
-
-
-
 
 
