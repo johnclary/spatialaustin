@@ -323,13 +323,3 @@ function getDimensions() {
 }
 
 
-
-
-
-
-
-
-
-
-
-
