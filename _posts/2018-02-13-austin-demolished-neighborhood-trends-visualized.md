@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'Austin Demolished: Visualizing Neighborhood Trends, 2000-2017'
-thumb: atd-demo-tracts.png
+thumb: atx-demo-tracts.png
 description: Visualizing housing demolition data at the neighborhood level using census data and City of Austin permit data.
 ---
 
