@@ -87,6 +87,13 @@ d3.json('/public/data/austin_tracts.json', function(error, data) {
         makeLegend(map);
         makeInfoPane(map);
 
+        var screenH = window.innerHeight;
+        if (screenH < 600) {
+            d3.selectAll('.leaflet-control')
+                .style('margin-bottom', '0px')
+                .style('margin-right', '0px');
+        }   
+
         var close_button = d3.select('.info-pane')
             .append('div')
             .attr('class', 'info-pane-close')
@@ -107,9 +114,6 @@ d3.json('/public/data/austin_tracts.json', function(error, data) {
             .style('cursor', 'pointer')
             .style('font-size', '1.5em')
             .html('x');
-
-
-
     })
         
 });
@@ -171,7 +175,12 @@ function makeLegend(map) {
         }
         
         attribText = d3.select(div).append("div");
-        attribText.append("p").attr("class", "attribText").text("Created by ").append("a").attr("href", '/austin-demolished-neighborhood-trends-visualized/').html("<br><b>S P A T I A L A U S T I N</b>");
+        attribText.append("p")
+            .attr("class", "attribText")
+            .text("Created by ")
+            .append("a")
+            .attr("href", '/austin-demolished-neighborhood-trends-visualized/')
+            .html("<br><b>S P A T I A L A U S T I N</b>");
 
         return div;
     };
@@ -197,7 +206,9 @@ function makeInfoPane(map) {
     infoPane.addTo(map); 
 
     d3.select("#attribution")
-        .append("p").attr("class", "attribText").text("Created by ")
+        .append("p")
+        .attr("class", "attribText")
+        .text("Created by ")
         .append("a").attr("href", '/austin-demolished-neighborhood-trends-visualized/')
         .html("<b>S P A T I A L A U S T I N</b>");
 
@@ -312,9 +323,10 @@ function getDimensions() {
     var screenW = window.innerWidth;
     var screenH = window.innerHeight;
     var margin = {top: 20, right: 20, bottom: 20, left: 25};
-    var width = screenW + margin.right + margin.left > 400 ? 350 : 200;
+    var width = screenW + margin.right + margin.left > 800 ? 300 : 200;
     width = width - margin.left - margin.right
     var height = screenH + margin.top + margin.bottom > 600 ? 200 : 150;
     var height = height - margin.top - margin.bottom;
+
     return { 'width' : width, 'height' : height, 'margin' : margin, 'screenW' : screenW, 'screenH' : screenH }
 }

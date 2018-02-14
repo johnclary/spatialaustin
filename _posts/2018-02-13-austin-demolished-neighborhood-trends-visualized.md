@@ -5,8 +5,10 @@ thumb: atd-demo-tracts.png
 description: Visualizing housing demolition data at the neighborhood level using census data and City of Austin permit data.
 ---
 
-<blockquote class="twitter-tweet" data-lang="en"><p lang="und" dir="ltr"><a href="https://twitter.com/hashtag/FrontYardParking?src=hash&amp;ref_src=twsrc%5Etfw">#FrontYardParking</a> <a href="https://twitter.com/hashtag/EastAustin?src=hash&amp;ref_src=twsrc%5Etfw">#EastAustin</a> <a href="https://twitter.com/hashtag/AustinDemolished?src=hash&amp;ref_src=twsrc%5Etfw">#AustinDemolished</a> <a href="https://t.co/gMsJfMrIcM">pic.twitter.com/gMsJfMrIcM</a></p>&mdash; S P A T I A L AUSTIN (@spatialaustin) <a href="https://twitter.com/spatialaustin/status/745233659305697282?ref_src=twsrc%5Etfw">June 21, 2016</a></blockquote>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<div class="post-img">
+    <blockquote class="twitter-tweet tw-align-center" data-lang="en"><p lang="und" dir="ltr"><a href="https://twitter.com/hashtag/FrontYardParking?src=hash&amp;ref_src=twsrc%5Etfw">#FrontYardParking</a> <a href="https://twitter.com/hashtag/EastAustin?src=hash&amp;ref_src=twsrc%5Etfw">#EastAustin</a> <a href="https://twitter.com/hashtag/AustinDemolished?src=hash&amp;ref_src=twsrc%5Etfw">#AustinDemolished</a> <a href="https://t.co/gMsJfMrIcM">pic.twitter.com/gMsJfMrIcM</a></p>&mdash; S P A T I A L AUSTIN (@spatialaustin) <a href="https://twitter.com/spatialaustin/status/745233659305697282?ref_src=twsrc%5Etfw">June 21, 2016</a></blockquote>
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>   
+</div>
 
 Housing demolitions are a ubiquitous reminder of Austin's dramatic pace of change. Stroll through any of Austin's older neighborhoods and you'll undoubtedly come across homes in varying states of demolition and re-construction. In certain neighborhoods, entire blocks have been razed and rebuilt (drop a pin at random in [Chestnut](https://www.google.com/maps/place/Chestnut,+Austin,+TX/@30.2783283,-97.7195638,15z/data=!3m1!4b1!4m5!3m4!1s0x8644b5ea0671591d:0xe6300a756e554fe!8m2!3d30.2790657!4d-97.7131577)).   
 
