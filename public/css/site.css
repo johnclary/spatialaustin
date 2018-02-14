@@ -53,9 +53,11 @@ a:hover {
     color: #808080;
 }
 
-
 .post-date {
     font-style: italic;
 }
 
+.post-content p {
+    text-align: justify;
+}
 
