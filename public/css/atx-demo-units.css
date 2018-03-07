@@ -13,6 +13,7 @@ html, body {
 }
 
 .legend {
+  cursor: pointer;
   line-height: 18px;
   width: 180px;
   color: #fff;
@@ -38,6 +39,7 @@ p.legend-title {
 }
 
 .info-pane {
+  cursor: pointer;
   opacity: .8;
   background-color: black;
   border-radius: 3px;
