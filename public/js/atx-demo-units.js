@@ -106,7 +106,9 @@ d3.json('/public/data/austin_tracts.json', function(error, data) {
 
         var close_button = d3.select('.info-pane')
             .append('div')
-            .attr('class', 'info-pane-close')
+            .attr('class', 'info-pane-close');
+
+        d3.select('.info-pane')
             .on('click', function(){
                 hideInfoPane();
                 clicked_feature = null;                
@@ -199,7 +201,8 @@ function makeLegend(map) {
     var close_button = d3.select('.legend')
         .append('span')
         .attr('class', 'legend-close')
-        .on('click', function(){
+    
+    d3.select('.legend').on('click', function(){
             collapseLegend(legendCollapsed);
         });
 
@@ -245,19 +248,12 @@ function makeInfoPane(map) {
 
         var div = L.DomUtil.create('div', 'info-pane');
 
-        div.innerHTML += '<div class="title"></div><div id="chart-wrapper"></div><div id="attribution"></div>'
+        div.innerHTML += '<div class="title"></div><div id="chart-wrapper">'
         
         return div;
     };
 
     infoPane.addTo(map); 
-
-    d3.select("#attribution")
-        .append("p")
-        .attr("class", "attribText")
-        .text("Created by ")
-        .append("a").attr("href", '/austin-demolished-neighborhood-trends-visualized/')
-        .html("<b>S P A T I A L A U S T I N</b>");
 
     return infoPane;
 };
