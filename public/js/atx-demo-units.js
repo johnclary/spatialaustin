@@ -8,7 +8,7 @@ var legendWidth = 100;
 var legendHeightExpanded;
 var legendHtml;
 
-var legendTitle = '<p class="legend-title" ><b>% Single-Family Units Demolished</b><br>2000-2017</p>';
+var legendTitle = '<p class="legend-title" ><b>% Single-Family Units Demolished, </b>2000-2017</p>';
 
 var colorScale = d3.scaleSequential(d3.interpolateRdPu)
     .domain([0,.2]);
@@ -59,7 +59,7 @@ d3.json('/public/data/austin_tracts.json', function(error, data) {
                 layer.on('click', function (pt) {
                     var num_demo = feature.properties.num_demo;
                     var pct_demo = '(' + formatPct(feature.properties.pct_demo) + ')';
-                    var info = '<b>Single-Family Units Demolished since 2000: ' + num_demo +  ' ' + pct_demo + '</b>';
+                    var info = '<b>Single-Family Units Demolished: </br> ' + num_demo +  ' ' + pct_demo + '</b>';
                     var demo_data = demos[feature.properties.FID]
 
                     if (clicked_feature && clicked_feature == layer) {
@@ -277,6 +277,9 @@ function showChart(data, info) {
 function updateChart(data, info) {
     var dims = getDimensions();
     var demos = d3.values(data);
+
+    d3.select('.title')
+        .html(info);
 
     // append the rectangles for the bar chart
     d3.select('#chart-wrapper')
