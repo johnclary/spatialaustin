@@ -1,6 +1,14 @@
+
 var clicked_feature;
 var chart_init = false;
 var formatPct = d3.format(".1%");
+var legendCollapsed = false;
+var legendHeightCollapsed = 40;
+var legendWidth = 100;
+var legendHeightExpanded;
+var legendHtml;
+
+var legendTitle = '<p class="legend-title" ><b>% Single-Family Units Demolished</b><br>2000-2017</p>';
 
 var colorScale = d3.scaleSequential(d3.interpolateRdPu)
     .domain([0,.2]);
@@ -12,7 +20,7 @@ var y = d3.scaleLinear()
           
 var layers = {
     stamen_toner_lite: L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}.{ext}', {
-        attribution : 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+        // attribution : 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
         subdomains : 'abcd',
         maxZoom : 20,
         ext : 'png'
@@ -25,6 +33,8 @@ var map_options = {
     minZoom : 1,
     maxZoom : 19
 };
+
+getDimensions();
 
 d3.json('/public/data/austin_tracts.json', function(error, data) {
 
@@ -69,7 +79,7 @@ d3.json('/public/data/austin_tracts.json', function(error, data) {
                     }
 
                     if (!clicked_feature) {
-                        showLegend();
+                        hideInfoPane();
                     }
 
                     tracts.eachLayer(function(layer_2) {
@@ -98,10 +108,9 @@ d3.json('/public/data/austin_tracts.json', function(error, data) {
             .append('div')
             .attr('class', 'info-pane-close')
             .on('click', function(){
-                showLegend();
+                hideInfoPane();
                 clicked_feature = null;                
                 tracts.eachLayer(function(layer_2) {
-
                     var style = getStyle(layer_2.feature)
                     layer_2.setStyle(style);
                 });
@@ -119,10 +128,8 @@ d3.json('/public/data/austin_tracts.json', function(error, data) {
 });
 
 
-function showLegend() {
+function hideInfoPane() {
     d3.select('.info-pane').style('visibility', 'hidden');
-    d3.select('.legend').style('visibility', 'visible').style('position', 'relative');
-    
 }
 
 
@@ -138,7 +145,7 @@ function getStyle(feature) {
             fillOpacity = .7;
             stroke = true;
         } else {
-            fillOpacity = .25;
+            fillOpacity = .2;
         }
     }
 
@@ -156,16 +163,14 @@ function getStyle(feature) {
 
 
 function makeLegend(map) {
-    
-    var legend = L.control({position: 'bottomright'});
+    // var pos = SMALL_SCREEN ? 'topright' : 'bottomleft';
+    var legend = L.control({position: 'bottomleft'});
 
     legend.onAdd = function(map) {
 
         var div = L.DomUtil.create('div', 'info legend'),
             pcts = [0, 4, 8, 12, 16, 20],
             labels = ['0%', '4%', '8%', '12%','16%', '20%'];
-
-        div.innerHTML += '<p><b>% Single-Family Units Demolished</b><br>2000-2017</p>'
         
         // straight from the leaflet tutorial
         for (var i = 0; i < labels.length; i++) {
@@ -173,7 +178,7 @@ function makeLegend(map) {
                 '<i style="background:' + colorScale(pcts[i]/100) + '"></i> ' +
                 labels[i] + (labels[i + 1] ? '&ndash;' + labels[i + 1] + '<br>' : '+');
         }
-        
+
         attribText = d3.select(div).append("div");
         attribText.append("p")
             .attr("class", "attribText")
@@ -182,17 +187,59 @@ function makeLegend(map) {
             .attr("href", '/austin-demolished-neighborhood-trends-visualized/')
             .html("<br><b>S P A T I A L A U S T I N</b>");
 
+        legendHtml = '<div class="legend-wrapper">' + div.innerHTML + '</div>';
+        
+         div.innerHTML = legendTitle + legendHtml;
+
         return div;
     };
 
-    legend.addTo(map);       
+    legend.addTo(map);
+
+    var close_button = d3.select('.legend')
+        .append('span')
+        .attr('class', 'legend-close')
+        .on('click', function(){
+            collapseLegend(legendCollapsed);
+        });
+
+    close_button.append('a')
+        .attr('class', 'minimize')
+        .style('position', 'absolute')
+        .style('right', '5px')
+        .style('top', '0px')
+        .style('cursor', 'pointer')
+        .style('font-size', '1.5em')
+        .html('—');
+
+    checkScreen();
 };
 
+
+function collapseLegend(state) {
+    if (state) {
+        //  expand legend
+        legendCollapsed = false;
+        d3.select('.legend-title').html(legendTitle);
+        d3.selectAll('.legend-wrapper').html(legendHtml);
+        d3.select('.minimize').html('—');
+    } else {
+        legendCollapsed = true;
+        d3.selectAll('.legend-wrapper').html('');
+        d3.select('.minimize').html('+');
+        d3.select('.legend-title').html('Legend');
+    }
+}
 
 
 function makeInfoPane(map) {
     
-    var infoPane = L.control({position: 'bottomright'});
+    if (SMALL_SCREEN) {
+        var pos = 'topright';
+    } else {
+        var pos = 'bottomright';
+    }
+    var infoPane = L.control({position: pos});
 
     infoPane.onAdd = function(map) {
 
@@ -221,7 +268,7 @@ function showChart(data, info) {
     d3.select('.info-pane').style('visibility', 'visible');
 
     //  hide legend on chart display
-    d3.select('.legend').style('visibility', 'hidden').style('position', 'absolute');   
+    //  d3.select('.legend').style('visibility', 'hidden').style('position', 'absolute');   
 
     if (!chart_init) {
         makeChart(data, info);
@@ -274,11 +321,26 @@ function makeChart(data, info) {
     var svg = d3.select('#chart-wrapper')
         .append('svg')
         .attr('class', 'chart')
-        .attr("width", dims.width + dims.margin.left + dims.margin.right)
-        .attr("height", dims.height + dims.margin.top + dims.margin.bottom)
-        .append("g")
-        .attr("transform", 
-              "translate(" + dims.margin.left + "," + dims.margin.top + ")");
+        .attr('height', dims.height + dims.margin.top + dims.margin.bottom)
+        .append('g')
+        .attr('transform', 
+              'translate(' + dims.margin.left + ',' + dims.margin.top + ')');
+
+    d3.selectAll('.chart')
+        .append('text')
+        .attr('class', 'axis-title')
+        .attr('transform', 'rotate(-90)')
+        .attr('y', 0 )
+        .attr('x', -15 - (dims.height / 2))
+        .attr('dy', '1em')
+        .style('text-anchor', 'middle')
+        .text('Units Demolished');
+    
+    d3.selectAll('.chart')
+        .append('text')
+        .attr('class', 'axis-title')
+        .attr("transform", "translate(" + (dims.width / 2) + " ," + (dims.height + dims.margin.bottom + 20) + ")")
+        .text('Year');
     
     var years = d3.keys(data);
     var demos = d3.values(data);
@@ -319,14 +381,27 @@ function makeChart(data, info) {
 }
 
 
+function checkScreen(){
+    if (SMALL_SCREEN) {
+        legendCollapsed = false;
+        collapseLegend(legendCollapsed)
+    }
+}
+
 function getDimensions() {
     var screenW = window.innerWidth;
     var screenH = window.innerHeight;
-    var margin = {top: 20, right: 20, bottom: 20, left: 25};
+    var margin = {top: 20, right: 20, bottom: 30, left: 40};
     var width = screenW + margin.right + margin.left > 800 ? 300 : 200;
     width = width - margin.left - margin.right
     var height = screenH + margin.top + margin.bottom > 600 ? 200 : 150;
     var height = height - margin.top - margin.bottom;
+    SMALL_SCREEN = screenW < 600 || screenH < 500 ? true : false
 
     return { 'width' : width, 'height' : height, 'margin' : margin, 'screenW' : screenW, 'screenH' : screenH }
 }
+
+
+
+
+
