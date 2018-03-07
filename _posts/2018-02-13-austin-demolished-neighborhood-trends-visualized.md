@@ -24,5 +24,13 @@ Having considered demolitions across [council districts](/austin-demolished/) an
 
 The source data here are [ACS 5-year housing estimates](https://www.census.gov/programs-surveys/acs/) for 1-unit and 2-unit structures, referenced against single-family and two-family [demolition permits issued by the City of Austin](https://data.austintexas.gov/Building-and-Development/Issued-Construction-Permits/3syk-w9eu) from 2000 through 2017. Clicking on any parcel reveals the year-over-year demolition totals within the tract.
 
+Looking past Onion Creek (which was hit by two 100-year floods in less than two years), the neighborhoods that have seen the greatest percentage of homes demolished are largely in East Austin. The data indicate that nearly 20% of the homes in the Chestnut census tract of have been demolished since the year 2000. Moving further east along MLK, year-over-year trends suggest that demolitions having spiked in recent years, a trend that presumably aligns with [rising land values](http://spatialaustin.com/atx-land-value).
+
+East Austin's demolition rates me be the highest, but similar patterns can be found across the city. Demolitions are clearly on the rise as you move further north or south from the city center, particularly in the cenus tracts south of Oltorf St and North of Koenig Ln.
+
 As usual, a big thanks is owed to the [Leaflet](http://leafletjs.com/) and [D3.js](https://d3js.org/) contributors for making this project possible.
+
+
+
+
 
